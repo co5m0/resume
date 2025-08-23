@@ -1,6 +1,6 @@
 # resume
 
-Diamond's resume repository.
+co5mo's resume repository.
 
 ## [Resume File [PDF]](./resume.pdf)
 

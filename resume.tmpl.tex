@@ -1,7 +1,7 @@
 % Resume partially based off of Jake Gutierrez's template.
 % It was originally licensed under the MIT License.
 
-\documentclass[letterpaper,12pt]{article}
+\documentclass[letterpaper,11pt]{article}
 
 \usepackage{fontawesome}
 \usepackage{latexsym}
@@ -153,16 +153,10 @@
 \end{center}
 
 
-%-----------EDUCATION-----------
-\section{EDUCATION}
-  \resumeSubHeadingListStart
-    <range .education>
-    \resumeSubheading
-      {<.institution>}{\small{<.location>}}
-      {<.studyType> in <.area>}{\small{<.startDate>} - \small{<.endDate>}}
-    <end>
-  \resumeSubHeadingListEnd
-
+%-----------BODY-----------
+<range .about>
+  {<.>}
+<end>
 
 \section{WORK EXPERIENCE}
   \vspace{2pt}
@@ -186,7 +180,17 @@
     <end>
   \resumeSubHeadingListEnd
 
+\section{EDUCATION}
+  \resumeSubHeadingListStart
+    <range .education>
+    \resumeSubheading
+      {<.institution>}{\small{<.location>}}
+      {<.studyType> in <.area>}{\small{<.startDate>} - \small{<.endDate>}}
+    <end>
+  \resumeSubHeadingListEnd
 
+
+<- if (datasourceExists "projects") ->
 \section{PROJECTS}
   \resumeSubHeadingListStart
     <range .projects>
@@ -205,8 +209,10 @@
       \small{<.description>}
     <end>
   \resumeSubHeadingListEnd
+<- end ->
 
 
+<- if (datasourceExists "projects") ->
 \section{LEADERSHIP}
   \resumeSubHeadingListStart
     \item
@@ -218,6 +224,7 @@
         <end>
       \end{tabular*}
   \resumeSubHeadingListEnd
+<- end ->
 
 
 \section{SKILLS}
@@ -232,5 +239,7 @@
     }
   \resumeSubHeadingListEnd
 
+\vfill
+In compliance with the GDPR and the Italian Legislative Decree no. 196 dated 30/06/2003, I authorize the processing of personal details contained in this document.
 
 \end{document}
