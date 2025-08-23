@@ -71,13 +71,12 @@
       "keywords": [
         "AWS",
         "GitHub Actions",
-        "AWS CodeDeploy",
-        "Grafana Cloud",
         "NixOS",
         "Terraform",
         "Pulumi",
         "CloudFormation",
         "Docker",
+        "Grafana Cloud",
         "New Relic"
       ],
       "name": "Cloud/Infra"
