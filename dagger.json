@@ -4,5 +4,12 @@
   "sdk": {
     "source": "go"
   },
+  "dependencies": [
+    {
+      "name": "nix",
+      "source": "github.com/tsirysndr/daggerverse/nix@06ff14707b36c781eaa41a01072564fbe4172eef",
+      "pin": "06ff14707b36c781eaa41a01072564fbe4172eef"
+    }
+  ],
   "source": ".dagger"
 }

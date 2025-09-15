@@ -35,3 +35,20 @@ func (m *Resume) GrepDir(ctx context.Context, directoryArg *dagger.Directory, pa
 		WithExec([]string{"grep", "-R", pattern, "."}).
 		Stdout(ctx)
 }
+
+func (m *Resume) Build(ctx context.Context, source *dagger.Directory) *dagger.File {
+	// nixCache := dag.CacheVolume("nix")
+	// homeCache := dag.CacheVolume("home")
+
+	return dag.Nix().SetupNix().
+		// WithMountedCache("/nix", nixCache).
+		// WithMountedCache("/root", homeCache).
+		WithMountedDirectory("/src", source).
+		WithWorkdir("/src").
+		WithExec([]string{"nix", "develop", "-c", "./generate.sh"}).
+		File("/src/resume.pdf")
+}
+
+func (m *Resume) Save(ctx context.Context, source *dagger.Directory) (string, error) {
+	return m.Build(ctx, source).Name(ctx)
+}

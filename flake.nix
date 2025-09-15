@@ -21,6 +21,7 @@
         deps = with pkgs; [
           gomplate
           tectonic
+          jq
         ];
       in
       {
