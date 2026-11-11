@@ -29,6 +29,20 @@
   "work": [
     {
       "highlights": [
+        "Responsible for the reliability, security, and visibility of the production infrastructure. Focused on automating operations and providing developers with the tools needed to own their service health.",
+        "Observability: Designed the full monitoring lifecycle, delivering actionable dashboards for both executive overviews and technical deep-dives.",
+        "SRE Culture: Acting as a core evangelist for SRE principles, helping teams balance feature velocity with system reliability.",
+        "Incident Framework: Developed the processes and tooling required for a structured, company-wide incident response capability.",
+        "Platform Engineering: Contributing to infrastructure automation (IaC), CI/CD pipeline efficiency, and cloud security enhancements."
+      ],
+      "company": "Exein",
+      "position": "Site Reliability Engineer",
+      "location": "Remote, IT",
+      "startDate": "Nov 2025",
+      "endDate": "Current"
+    },
+    {
+      "highlights": [
         "Architected and led the migration from a legacy VM-based architecture to a modern, scalable containerized platform on AWS ECS, enabling product teams to self-sufficiently create and deploy new services within 6 months.",
         "Spearheaded the company-wide adoption of Infrastructure as Code (IaC), initially with Terraform and later leading the strategic transition to Pulumi (TypeScript) to align with the primary codebase, significantly reducing developer friction and increasing contributions to infrastructure modules.",
         "Played an instrumental role in building the Platform team from the ground up, defining the hiring process and leading the interviews that scaled the team.",
@@ -40,7 +54,7 @@
       "position": "Platform Engineer",
       "location": "Remote, IT",
       "startDate": "Feb 2023",
-      "endDate": "Current"
+      "endDate": "Sep 2025"
     },
     {
       "highlights": [
