@@ -3,6 +3,9 @@
 
 \documentclass[letterpaper,11pt]{article}
 
+% Select OpenType explicitly so Fontconfig cannot choose the Type 1 font.
+\usepackage{fontspec}
+\defaultfontfeatures[FontAwesome]{Extension=.otf}
 \usepackage{fontawesome}
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}

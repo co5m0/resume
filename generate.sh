@@ -73,26 +73,29 @@ generate_finish() {
 generate() {
 	local input="$1"
 	local output="$2"
-	local outputName="${output%.*}"
+	local buildDir
+	buildDir=$(mktemp -d "$WORK/tex.XXXXXX")
 
 	# Enforce reproducible builds.
 	# See https://reproducible-builds.org/docs/source-date-epoch/.
-	export SOURCE_DATE_EPOCH=0
+	export SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1
 
 	if ! gomplate \
 		-c .="$input" \
-		-o "$outputName.tex" \
+		-o "$buildDir/resume.tex" \
 		-f "$TEX_TEMPLATE" \
 		--left-delim '<' --right-delim '>'
 	then
 		return 1
 	fi
 
-	tectonic -c minimal "$outputName.tex" |& log::pipe
-	status=$?
-
-	rm "$outputName.tex"
-	return $status
+	if latexmk -xelatex -interaction=nonstopmode -halt-on-error -no-shell-escape \
+		-outdir="$buildDir" "$buildDir/resume.tex" |& log::pipe
+	then
+		cp "$buildDir/resume.pdf" "$output"
+	else
+		return $?
+	fi
 }
 
 logBuffer=""
@@ -101,7 +104,7 @@ log() {
 	if [[ $VERBOSE == 1 ]]; then
 		echo "$@" >&2
 	else
-		logBuffer+="$@"$'\n'
+		logBuffer+="$*"$'\n'
 	fi
 }
 

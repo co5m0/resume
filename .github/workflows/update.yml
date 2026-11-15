@@ -4,6 +4,16 @@ on:
   push:
     branches:
       - main
+    paths:
+      - resume.json
+      - resume.tmpl.tex
+      - generate.sh
+      - flake.nix
+      - flake.lock
+      - '.github/workflows/**'
+
+permissions:
+  contents: write
 
 jobs:
   update:
@@ -15,13 +25,8 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
-      - name: generate.sh
-        run: |
-          if [[ $RUNNER_DEBUG ]]; then
-            nix develop -c -- bash -x ./generate.sh
-          else
-            nix develop -c ./generate.sh
-          fi
+      - name: Build PDF
+        run: nix run --print-build-logs
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:

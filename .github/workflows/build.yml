@@ -1,11 +1,19 @@
 name: Build Resume
 
 on:
-  push:
-    branches:
-      - '!main' # handled by update.yml
   pull_request:
+    # shortcut: filtered required checks can stay pending; use job-level filtering if this workflow becomes required.
+    paths:
+      - resume.json
+      - resume.tmpl.tex
+      - generate.sh
+      - flake.nix
+      - flake.lock
+      - '.github/workflows/**'
   workflow_call:
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -16,15 +24,12 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
-      - name: generate.sh
+      - name: Build and check PDF
         run: |
-          if [[ $RUNNER_DEBUG ]]; then
-            nix develop -c -- bash -x ./generate.sh
-          else
-            nix develop -c ./generate.sh
-          fi
+          nix build --print-build-logs
+          nix flake check --print-build-logs
 
       - uses: actions/upload-artifact@v4
         with:
           name: resume
-          path: resume.pdf
+          path: result/resume.pdf
